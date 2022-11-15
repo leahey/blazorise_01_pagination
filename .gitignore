@@ -1,0 +1,26 @@
+.vs
+obj
+bin
+pub
+/certs
+
+# NDepend
+NDependOut/
+NDependOutCoverageFiles
+
+# CodeRush options directory
+.cr/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+.ncrunchsolution
+*.ncrunchproject
+

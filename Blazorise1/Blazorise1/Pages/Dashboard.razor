@@ -1,0 +1,127 @@
+﻿@page "/"
+@inject IVersionProvider VersionProvider
+<Heading Size="HeadingSize.Is1" Margin="Margin.Is3.FromBottom">Blazorise</Heading>
+
+<Paragraph>
+    Blazorise is a component library built on top of Blazor and CSS frameworks like <Anchor To="https://getbootstrap.com/" Target="Target.Blank">Bootstrap</Anchor>, <Anchor To="https://bulma.io/" Target="Target.Blank">Bulma</Anchor>, <Anchor To="https://ant.design/" Target="Target.Blank">Ant Design</Anchor>, and <Anchor To="http://daemonite.github.io/material/" Target="Target.Blank">Material</Anchor>. It can be used to build responsive, single-page web applications.
+</Paragraph>
+
+<Alert Color="Color.Info" Visible>
+    <Paragraph>
+        This is a Blazorise Starting Template allowing you to quickly get started building your project!
+    </Paragraph>
+
+    <Paragraph>
+        The bare minimum has been installed for you:
+        <ul>
+            <li>Blazorise @($"v{VersionProvider.MilestoneVersion}")</li>
+            <li>The Blazorise Provider you have selected</li>
+            <li>The corresponding icon provider</li>
+        </ul>
+        However Blazorise has many more extensions at your disposal.
+        You can find them <Anchor To="https://blazorise.com/docs/extensions" Target="Target.Blank">here</Anchor>.
+    </Paragraph>
+
+    <Paragraph>
+        Please visit the official <Anchor To="https://bootstrapdemo.blazorise.com/" Target="Target.Blank">Blazorise Demo</Anchor> for component examples.
+    </Paragraph>
+    <Paragraph>
+        Please visit the official <Anchor To="https://blazorise.com/docs/" Target="Target.Blank">Blazorise Documentation</Anchor> to learn more about the available components.
+    </Paragraph>
+</Alert>
+@if ( true )
+{
+    <Row>
+        <Column>
+            <Accordion>
+                <Collapse Visible="@true">
+                    <CollapseHeader Background="Background.Light">
+                        <Column ColumnSize="ColumnSize.Is10">
+                            <Heading TextWeight="TextWeight.Bold" Size="HeadingSize.Is5">
+                                <Button Color="Color.Light">
+                                    <Span>
+                                        <Icon Name="IconName.List" />
+                                        <Span TextWeight="TextWeight.Bold">Summary</Span>
+                                    </Span>
+                                </Button>
+                            </Heading>
+                        </Column>
+                        <Column ColumnSize="ColumnSize.Is2" TextAlignment="TextAlignment.End">
+                            <Button Style="background-color:purple;color:white;" Color="Color.Success">Export Summary</Button>
+                        </Column>
+                    </CollapseHeader>
+                    <CollapseBody>
+                        <DataGrid TItem="FrozenClaims"
+                                  Data="@frozenClaimsList"
+                                  ShowPager="true"
+                                  ShowPageSizes="true"
+                                  PageSize="10"
+                                  SortMode="DataGridSortMode.Single" Sortable="true"
+                                  PagerOptions="new() { ButtonSize = Size.Small }"
+                                  Responsive>
+                            <DataGridColumns>
+                                <DataGridColumn Width="10%" TItem="FrozenClaims" Caption="Export" TextAlignment="TextAlignment.Start" Field="@nameof(FrozenClaims.DisplayEmpty)">
+                                    <DisplayTemplate>
+                                        <Button Style="background-color:purple;color:white;" @onclick:stopPropagation="true">Export</Button>
+                                    </DisplayTemplate>
+                                </DataGridColumn>
+                                <DataGridColumn Width="20%" Context="mainrow" HeaderTextAlignment="TextAlignment.Start" TextAlignment="TextAlignment.Start" TItem="FrozenClaims" Field="@nameof(FrozenClaims.PharmName)" Caption="Name">
+                                    <DisplayTemplate>
+                                        <Icon Name="IconName.AngleRight" /> PharmName
+                                    </DisplayTemplate>
+                                </DataGridColumn>
+                                <DataGridColumn Width="10%" HeaderTextAlignment="TextAlignment.End" TextAlignment="TextAlignment.End" TItem="FrozenClaims" Field="@nameof(FrozenClaims.ClaimsCount)" Caption="Count" />
+                                <DataGridColumn Width="10%" HeaderTextAlignment="TextAlignment.End" TextAlignment="TextAlignment.End" TItem="FrozenClaims" Field="@nameof(FrozenClaims.Charges)" Caption="Charges" DisplayFormat="{0:C2}" />
+                                <DataGridColumn Width="15%" HeaderTextAlignment="TextAlignment.End" TextAlignment="TextAlignment.End" TItem="FrozenClaims" Field="@nameof(FrozenClaims.Expected)" Caption="Expected" DisplayFormat="{0:C2}" />
+                            </DataGridColumns>
+                        </DataGrid>
+                    </CollapseBody>
+                </Collapse>
+            </Accordion>
+        </Column>
+    </Row>
+
+}
+
+@code {
+    private FrozenClaims selectedFrozenClaim;
+    private List<FrozenClaims> frozenClaimsList = new() { 
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName1" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName2" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName3" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName4" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName5" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName6" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName7" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName8" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName9" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName10" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName11" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName12" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName13" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName14" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName15" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName16" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName17" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName18" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName19" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName20" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName21" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName22" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName23" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName24" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName25" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName26" } ,
+        new() { DisplayEmpty = "Yes", Status = "On", ClaimsCount = "100", Charges = "101", Expected = "Yes", PharmName = "SomeName100" } ,
+    };
+    public class FrozenClaims
+    {
+        public string DisplayEmpty { get; set; }
+        public string Status { get; set; }
+        public string ClaimsCount { get; set; }
+        public string Charges { get; set; }
+        public string Expected { get; set; }
+        public List<FrozenClaims> SubRows { get; set; }
+        public string PharmName { get; set; }
+    }
+}
